@@ -30,12 +30,12 @@ let g:last_mode=""
 
 " Basic color presets
 hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
-hi User2 guifg=#eee8d5  guibg=#2aa198   ctermfg=254 ctermbg=37  
+hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
 hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
 hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
 hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
-hi User6 guifg=#cb4b16  guibg=#fdf6e3   ctermfg=254 ctermbg=166 gui=bold cterm=bold   
-hi User7 guifg=#d33682  guibg=#002b36   ctermfg=207 ctermbg=234 gui=bold cterm=bold   
+hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
+hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
 hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=bold   
 
 " pretty mode display - converts the one letter status notifiers to words
@@ -67,6 +67,15 @@ function! ModeChanged(mode)
     else                   | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=254 ctermbg=160 cterm=NONE
     endif
 
+    if     a:mode ==# "n"  | hi User2 guifg=#859900 guibg=#073642 ctermfg=64 
+    elseif a:mode ==# "i"  | hi User2 guifg=#cb4b16 guibg=#073642 ctermfg=166 
+    elseif a:mode ==# "R"  | hi User2 guifg=#dc322f guibg=#073642 ctermfg=37 
+    elseif a:mode ==# "v"  | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
+    elseif a:mode ==# "V"  | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
+    elseif a:mode ==# "^V" | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
+    elseif a:mode ==# "c"  | hi User2 guifg=#d33682 guibg=#073642 ctermfg=37 cterm=NONE
+    else                   | hi User2 guifg=#d33682 guibg=#073642 ctermfg=160 cterm=NONE
+    endif
 endfunc
 
 " Return a string if file is modified or empty string if its not
@@ -76,7 +85,7 @@ function! Modified()
     if modified == 0
         return ''
     else
-        return 'X'
+        return '⚡'
 endfunc
 
 if has('statusline')
@@ -117,14 +126,15 @@ if has('statusline')
     function! SetStatusLineStyle()
 
         let &stl=""
-        " mode (changes color)
-        let &stl.="%1*\ %{Mode()} %0*" 
         " modified / unmodified (purple)
         let &stl.="%(%4* %{Modified()} %)%0*"
+        " mode (changes color)
+        let &stl.="%1*\ %{Mode()} %0*" 
+        let &stl.="%2*⮀%0*" 
         " file path
-        let &stl.=" %{getcwd()} "
+        let &stl.="%7* %{getcwd()} %0*"
         " file name
-        let &stl.="%6* %<%f %0*"
+        let &stl.="%6* %<%f "
         " read only, modifiable flags in brackets
         let &stl.="%([%R]%) "
 
@@ -144,10 +154,10 @@ if has('statusline')
         " buffer number
         let &stl.="BUF #%n " 
         "line number (pink) / total lines
-        let &stl.="%1*LN %l/%L\  "
+        let &stl.="%1* LN %l/%L\  "
         " percentage done
         let &stl.="(%p%%)  "
-
+        let &stl.="%2*⮀%0*" 
         
     endfunc
 
