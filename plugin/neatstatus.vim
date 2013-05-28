@@ -79,6 +79,7 @@ function! Modified()
         return '⚡'
 endfunc
 
+
 if has('statusline')
 
     " Status line detail:
@@ -115,15 +116,15 @@ if has('statusline')
     " %c%V  column number, absolute column number
     "
     function! SetStatusLineStyle()
-" Basic color presets
-hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
-hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
-hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
-hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
-hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
-hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
-hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
-hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=bold   
+        " Basic color presets
+        hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
+        hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
+        hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
+        hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
+        hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
+        hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
+        hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
+        hi User8 guifg=#268bd2  guibg=#073642 ctermfg=234 ctermbg=230
 
         let &stl=""
         " modified / unmodified (purple)
@@ -145,8 +146,9 @@ hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=b
         " readonly flag
         let &stl.="%(%{(&ro!=0?'(readonly)':'')} | %)"
 
+        let &stl.="%8*%{fugitive#statusline()} %0*" 
         " file type (eg. python, ruby, etc..)
-        let &stl.="%1*%( %{&filetype} %) | "
+        let &stl.="%2*%( %{&filetype} %) | "
         " file format (eg. unix, dos, etc..)
         let &stl.="%{&fileformat} | "
         " file encoding (eg. utf8, latin1, etc..)
@@ -154,7 +156,7 @@ hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=b
         " buffer number
         let &stl.="BUF #%n " 
         "line number (pink) / total lines
-        let &stl.="%1* LN %l/%L\  "
+        let &stl.="%2* LN %l/%L\  "
         " percentage done
         let &stl.="(%p%%)  "
         
