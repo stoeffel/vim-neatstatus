@@ -28,15 +28,6 @@ let g:last_mode=""
 " cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
 " green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 
-" Basic color presets
-hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
-hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
-hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
-hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
-hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
-hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
-hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
-hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=bold   
 
 " pretty mode display - converts the one letter status notifiers to words
 function! Mode()
@@ -124,6 +115,15 @@ if has('statusline')
     " %c%V  column number, absolute column number
     "
     function! SetStatusLineStyle()
+" Basic color presets
+hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
+hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
+hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
+hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
+hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
+hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
+hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
+hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=bold   
 
         let &stl=""
         " modified / unmodified (purple)
@@ -146,18 +146,17 @@ if has('statusline')
         let &stl.="%(%{(&ro!=0?'(readonly)':'')} | %)"
 
         " file type (eg. python, ruby, etc..)
-        let &stl.="%1*%( %{&filetype} %)%0* "
+        let &stl.="%1*%( %{&filetype} %) | "
         " file format (eg. unix, dos, etc..)
         let &stl.="%{&fileformat} | "
         " file encoding (eg. utf8, latin1, etc..)
-        let &stl.="%(%{(&fenc!=''?&fenc:&enc)} | %)"
+        let &stl.="%(%{(&fenc!=''?&fenc:&enc)}  %)"
         " buffer number
         let &stl.="BUF #%n " 
         "line number (pink) / total lines
         let &stl.="%1* LN %l/%L\  "
         " percentage done
         let &stl.="(%p%%)  "
-        let &stl.="%2*⮀%0*" 
         
     endfunc
 
