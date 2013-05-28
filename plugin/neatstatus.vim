@@ -7,26 +7,48 @@
 set ls=2 " Always show status line
 let g:last_mode=""
 
+
+
+" SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      sRGB        HSB
+" --------- ------- ---- -------  ----------- ---------- ----------- -----------
+" base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+" base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+" base01    #586e75 10/7 brgreen  240 #4e4e4e 45 -07 -07  88 110 117 194  25  46
+" base00    #657b83 11/7 bryellow 241 #585858 50 -07 -07 101 123 131 195  23  51
+" base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+" base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+" base2     #eee8d5  7/7 white    254 #d7d7af 92 -00  10 238 232 213  44  11  93
+" base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+" yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+" orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+" red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+" magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+" violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+" blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+" cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+" green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+
 " Basic color presets
-hi User1 guifg=#000000  guibg=#7dcc7d   ctermfg=0  ctermbg=2    " BLACK ON GREEN
-hi User2 guifg=#ffffff  guibg=#5b7fbb   ctermfg=15 ctermbg=67   " WHITE ON BLUE
-hi User3 guifg=#000000  guibg=#FF0000   ctermfg=15 ctermbg=9    " BLACK ON ORANGE
-hi User4 guifg=#ffffff  guibg=#810085   ctermfg=15 ctermbg=53   " WHITE ON PURPLE
-hi User5 guifg=#ffffff  guibg=#000000   ctermfg=15 ctermbg=0    " WHITE ON BLACK
-hi User6 guifg=#ffffff  guibg=#ff00ff   ctermfg=15 ctermbg=5    " WHITE ON PINK
-hi User7 guifg=#ff00ff  guibg=#000000   ctermfg=207 ctermbg=0 gui=bold cterm=bold   " PINK ON BLACK
-hi User8 guifg=#000000  guibg=#00ffff   ctermfg=0 ctermbg=51 gui=bold cterm=bold    " BLACK ON CYAN
+hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
+hi User2 guifg=#eee8d5  guibg=#2aa198   ctermfg=254 ctermbg=37  
+hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
+hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
+hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
+hi User6 guifg=#cb4b16  guibg=#fdf6e3   ctermfg=254 ctermbg=166 gui=bold cterm=bold   
+hi User7 guifg=#d33682  guibg=#002b36   ctermfg=207 ctermbg=234 gui=bold cterm=bold   
+hi User8 guifg=#002b36  guibg=#2aa198   ctermfg=234 ctermbg=230 gui=bold cterm=bold   
 
 " pretty mode display - converts the one letter status notifiers to words
 function! Mode()
     let l:mode = mode()
 
-    if     mode ==# "n"  | return "NORMAL"
-    elseif mode ==# "i"  | return "INSERT"
+    if     mode ==# "n"  | return "NORMAL "
+    elseif mode ==# "i"  | return "INSERT "
     elseif mode ==# "R"  | return "REPLACE"
-    elseif mode ==# "v"  | return "VISUAL"
-    elseif mode ==# "V"  | return "V-LINE"
+    elseif mode ==# "v"  | return "VISUAL "
+    elseif mode ==# "V"  | return "V-LINE "
     elseif mode ==# "^V" | return "V-BLOCK"
+    elseif mode ==# "c"  | return "SEARCH "
     else                 | return l:mode
     endif
 
@@ -35,13 +57,14 @@ endfunc
 " Change the values for User1 color preset depending on mode
 function! ModeChanged(mode)
 
-    if     a:mode ==# "n"  | hi User1 guifg=#000000 guibg=#7dcc7d gui=NONE ctermfg=0 ctermbg=2 cterm=NONE
-    elseif a:mode ==# "i"  | hi User1 guifg=#ffffff guibg=#ff0000 gui=bold ctermfg=15 ctermbg=9 cterm=bold
-    elseif a:mode ==# "r"  | hi User1 guifg=#ffff00 guibg=#5b7fbb gui=bold ctermfg=190 ctermbg=67 cterm=bold
-    "elseif a:mode ==# "v"  | hi User1 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=53
-    "elseif a:mode ==# "V"  | hi User1 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=53
-    "elseif a:mode ==# "^V" | hi User1 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=53
-    else                   | hi User1 guifg=#ffffff guibg=#810085 gui=NONE ctermfg=15 ctermbg=53 cterm=NONE
+    if     a:mode ==# "n"  | hi User1 guifg=#002b36 guibg=#859900 gui=NONE ctermfg=234 ctermbg=64 cterm=NONE
+    elseif a:mode ==# "i"  | hi User1 guifg=#eee8d5 guibg=#cb4b16 gui=NONE ctermfg=254 ctermbg=166 cterm=NONE
+    elseif a:mode ==# "R"  | hi User1 guifg=#eee8d5 guibg=#dc322f gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
+    elseif a:mode ==# "v"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
+    elseif a:mode ==# "V"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
+    elseif a:mode ==# "^V" | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
+    elseif a:mode ==# "c"  | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
+    else                   | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=254 ctermbg=160 cterm=NONE
     endif
 
 endfunc
@@ -53,7 +76,7 @@ function! Modified()
     if modified == 0
         return ''
     else
-        return 'modified'
+        return 'X'
 endfunc
 
 if has('statusline')
@@ -95,38 +118,35 @@ if has('statusline')
 
         let &stl=""
         " mode (changes color)
-        let &stl.="%1*\ %{Mode()} %0*|" 
-        " session name
-        if v:servername!=''
-            let &stl.="%5* %{v:servername} %0*|"
-        endif
+        let &stl.="%1*\ %{Mode()} %0*" 
+        " modified / unmodified (purple)
+        let &stl.="%(%4* %{Modified()} %)%0*"
         " file path
-        let &stl.=" %<%F "
-        " read only, modified, modifiable flags in brackets
-        let &stl.="%([%R%M]%) "
+        let &stl.=" %{getcwd()} "
+        " file name
+        let &stl.="%6* %<%f %0*"
+        " read only, modifiable flags in brackets
+        let &stl.="%([%R]%) "
 
         " right-aligh everything past this point
         let &stl.="%= "
+
 
         " readonly flag
         let &stl.="%(%{(&ro!=0?'(readonly)':'')} | %)"
 
         " file type (eg. python, ruby, etc..)
-        let &stl.="%8*%( %{&filetype} %)%0*| "
+        let &stl.="%1*%( %{&filetype} %)%0* "
         " file format (eg. unix, dos, etc..)
         let &stl.="%{&fileformat} | "
         " file encoding (eg. utf8, latin1, etc..)
         let &stl.="%(%{(&fenc!=''?&fenc:&enc)} | %)"
         " buffer number
-        let &stl.="BUF #%n |" 
+        let &stl.="BUF #%n " 
         "line number (pink) / total lines
-        let &stl.="%5* LN %7*%l%5*/%L\ %0*| "
+        let &stl.="%1*LN %l/%L\  "
         " percentage done
-        let &stl.="(%p%%) | "
-        " column number
-        let &stl.="COL %c%V |"
-        " modified / unmodified (purple)
-        let &stl.="%(%6* %{Modified()} %)"
+        let &stl.="(%p%%)  "
 
         
     endfunc
