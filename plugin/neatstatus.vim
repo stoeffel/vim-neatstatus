@@ -42,7 +42,6 @@ function! Mode()
     elseif mode ==# "c"  | return "SEARCH "
     else                 | return l:mode
     endif
-
 endfunc    
 
 " Change the values for User1 color preset depending on mode
@@ -122,7 +121,7 @@ if has('statusline')
         hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
         hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
         hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
-        hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166 gui=bold cterm=bold   
+        hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166
         hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
         hi User8 guifg=#268bd2  guibg=#073642 ctermfg=234 ctermbg=230
 
