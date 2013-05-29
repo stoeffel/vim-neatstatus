@@ -118,10 +118,10 @@ if has('statusline')
         " Basic color presets
         hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
         hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
-        hi User3 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166 
+        hi User3 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166
         hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
-        hi User5 guifg=#eee8d5  guibg=#002b36   ctermfg=254 ctermbg=234
-        hi User6 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166
+        hi User5 guifg=#002b36  guibg=#cb4b16  ctermfg=254 ctermbg=166
+        hi User6 guifg=#eee8d5  guibg=#cb4b16  ctermfg=254 ctermbg=166
         hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
         hi User8 guifg=#268bd2  guibg=#073642 ctermfg=234 ctermbg=230
 
@@ -133,10 +133,10 @@ if has('statusline')
         let &stl.="%2*⮀%0*" 
         " file path
         let &stl.="%7* %{getcwd()} %0*"
+        let &stl.="%5*⮀%0*" 
         " file name
-        let &stl.="%6* %<%f "
-        " read only, modifiable flags in brackets
-        let &stl.="%([%R]%) "
+        let &stl.="%6* %<%t %0*"
+        let &stl.="%3*⮀%0*%7*" 
 
         " right-aligh everything past this point
         let &stl.="%= "
