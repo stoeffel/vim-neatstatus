@@ -46,10 +46,9 @@ endfunc
 
 " Change the values for User1 color preset depending on mode
 function! ModeChanged(mode)
-
     if     a:mode ==# "n"  | hi User1 guifg=#002b36 guibg=#859900 gui=NONE ctermfg=234 ctermbg=64 cterm=NONE
-    elseif a:mode ==# "i"  | hi User1 guifg=#eee8d5 guibg=#cb4b16 gui=NONE ctermfg=254 ctermbg=166 cterm=NONE
-    elseif a:mode ==# "R"  | hi User1 guifg=#eee8d5 guibg=#dc322f gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
+    elseif a:mode ==# "i"  | hi User1 guifg=#eee8d5 guibg=#268bd2 gui=NONE ctermfg=254 ctermbg=166 cterm=NONE
+    elseif a:mode ==# "r"  | hi User1 guifg=#eee8d5 guibg=#dc322f gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
     elseif a:mode ==# "v"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
     elseif a:mode ==# "V"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
     elseif a:mode ==# "^V" | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
@@ -57,14 +56,14 @@ function! ModeChanged(mode)
     else                   | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=254 ctermbg=160 cterm=NONE
     endif
 
-    if     a:mode ==# "n"  | hi User2 guifg=#859900 guibg=#073642 ctermfg=64 
-    elseif a:mode ==# "i"  | hi User2 guifg=#cb4b16 guibg=#073642 ctermfg=166 
-    elseif a:mode ==# "R"  | hi User2 guifg=#dc322f guibg=#073642 ctermfg=37 
-    elseif a:mode ==# "v"  | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
-    elseif a:mode ==# "V"  | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
-    elseif a:mode ==# "^V" | hi User2 guifg=#b58900 guibg=#073642 ctermfg=160
-    elseif a:mode ==# "c"  | hi User2 guifg=#d33682 guibg=#073642 ctermfg=37 cterm=NONE
-    else                   | hi User2 guifg=#d33682 guibg=#073642 ctermfg=160 cterm=NONE
+    if     a:mode ==# "n"  | hi User2 guifg=#859900 guibg=#eee8d5 ctermfg=64 
+    elseif a:mode ==# "i"  | hi User2 guifg=#268bd2 guibg=#eee8d5 ctermfg=166 
+    elseif a:mode ==# "r"  | hi User2 guifg=#dc322f guibg=#eee8d5 ctermfg=37 
+    elseif a:mode ==# "v"  | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
+    elseif a:mode ==# "V"  | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
+    elseif a:mode ==# "^V" | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
+    elseif a:mode ==# "c"  | hi User2 guifg=#d33682 guibg=#eee8d5 ctermfg=37 cterm=NONE
+    else                   | hi User2 guifg=#d33682 guibg=#eee8d5 ctermfg=160 cterm=NONE
     endif
 endfunc
 
@@ -117,17 +116,15 @@ if has('statusline')
     function! SetStatusLineStyle()
         " Basic color presets
         hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
-        hi User2 guifg=#859900  guibg=#073642 ctermfg=64    
-        hi User3 guifg=#cb4b16  guibg=#073642 ctermfg=254 ctermbg=166
+        hi User2 guifg=#859900  guibg=#eee8d5 ctermfg=64    
+        hi User3 guifg=#cb4b16  guibg=#eee8d5 ctermfg=254 ctermbg=166
         hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
-        hi User5 guifg=#002b36  guibg=#cb4b16  ctermfg=254 ctermbg=166
+        hi User5 guifg=#eee8d5  guibg=#cb4b16  ctermfg=254 ctermbg=166
         hi User6 guifg=#eee8d5  guibg=#cb4b16  ctermfg=254 ctermbg=166
-        hi User7 guifg=#eee8d5  guibg=#073642   ctermfg=207 ctermbg=234
-        hi User8 guifg=#268bd2  guibg=#073642 ctermfg=234 ctermbg=230
+        hi User7 guibg=#eee8d5  guifg=#073642   ctermfg=207 ctermbg=234
+        hi User8 guifg=#268bd2  guibg=#eee8d5 ctermfg=234 ctermbg=230
 
         let &stl=""
-        " modified / unmodified (purple)
-        let &stl.="%(%4* %{Modified()} %)%0*"
         " mode (changes color)
         let &stl.="%1*\ %{Mode()} %0*" 
         let &stl.="%2*⮀%0*" 
@@ -158,7 +155,8 @@ if has('statusline')
         let &stl.="%2* LN %l/%L\  "
         " percentage done
         let &stl.="(%p%%)  "
-        
+        " modified / unmodified (purple)
+        let &stl.="%(%4* %{Modified()} %)%0*"
     endfunc
 
     au InsertEnter * call ModeChanged(v:insertmode)
@@ -168,8 +166,4 @@ if has('statusline')
     " Switch between the normal and vim-debug modes in the status line
     nmap _ds :call SetStatusLineStyle()<CR>
     call SetStatusLineStyle()
-    " Window title
-    if has('title')
-        set titlestring=%t%(\ [%R%M]%)
-    endif
 endif
