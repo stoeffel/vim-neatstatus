@@ -46,24 +46,24 @@ endfunc
 
 " Change the values for User1 color preset depending on mode
 function! ModeChanged(mode)
-    if     a:mode ==# "n"  | hi User1 guifg=#002b36 guibg=#859900 gui=NONE ctermfg=234 ctermbg=64 cterm=NONE
-    elseif a:mode ==# "i"  | hi User1 guifg=#eee8d5 guibg=#268bd2 gui=NONE ctermfg=254 ctermbg=166 cterm=NONE
-    elseif a:mode ==# "r"  | hi User1 guifg=#eee8d5 guibg=#dc322f gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
-    elseif a:mode ==# "v"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
-    elseif a:mode ==# "V"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
-    elseif a:mode ==# "^V" | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=160
-    elseif a:mode ==# "c"  | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=190 ctermbg=37 cterm=NONE
-    else                   | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=254 ctermbg=160 cterm=NONE
+    if     a:mode ==# "n"  | hi User1 guifg=#002b36 guibg=#859900 gui=NONE ctermfg=234 ctermbg=64  cterm=NONE
+    elseif a:mode ==# "i"  | hi User1 guifg=#eee8d5 guibg=#268bd2 gui=NONE ctermfg=254 ctermbg=33  cterm=NONE
+    elseif a:mode ==# "r"  | hi User1 guifg=#eee8d5 guibg=#dc322f gui=NONE ctermfg=254 ctermbg=160 cterm=NONE
+    elseif a:mode ==# "v"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=136 cterm=NONE
+    elseif a:mode ==# "V"  | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=136 cterm=NONE
+    elseif a:mode ==# "^V" | hi User1 guifg=#002b36 guibg=#b58900 gui=NONE ctermfg=254 ctermbg=136 cterm=NONE
+    elseif a:mode ==# "c"  | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=234 ctermbg=125 cterm=NONE
+    else                   | hi User1 guifg=#002b36 guibg=#d33682 gui=NONE ctermfg=254 ctermbg=125 cterm=NONE
     endif
 
-    if     a:mode ==# "n"  | hi User2 guifg=#859900 guibg=#eee8d5 ctermfg=64 
-    elseif a:mode ==# "i"  | hi User2 guifg=#268bd2 guibg=#eee8d5 ctermfg=166 
-    elseif a:mode ==# "r"  | hi User2 guifg=#dc322f guibg=#eee8d5 ctermfg=37 
-    elseif a:mode ==# "v"  | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
-    elseif a:mode ==# "V"  | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
-    elseif a:mode ==# "^V" | hi User2 guifg=#b58900 guibg=#eee8d5 ctermfg=160
-    elseif a:mode ==# "c"  | hi User2 guifg=#d33682 guibg=#eee8d5 ctermfg=37 cterm=NONE
-    else                   | hi User2 guifg=#d33682 guibg=#eee8d5 ctermfg=160 cterm=NONE
+    if     a:mode ==# "n"  | hi User2 guifg=#859900 guibg=#cb4b16  ctermfg=166 ctermfg=64 
+    elseif a:mode ==# "i"  | hi User2 guifg=#268bd2 guibg=#cb4b16  ctermfg=166 ctermfg=33 
+    elseif a:mode ==# "r"  | hi User2 guifg=#dc322f guibg=#cb4b16  ctermfg=166 ctermfg=160
+    elseif a:mode ==# "v"  | hi User2 guifg=#b58900 guibg=#cb4b16  ctermfg=166 ctermfg=136
+    elseif a:mode ==# "V"  | hi User2 guifg=#b58900 guibg=#cb4b16  ctermfg=166 ctermfg=136
+    elseif a:mode ==# "^V" | hi User2 guifg=#b58900 guibg=#cb4b16  ctermfg=166 ctermfg=136
+    elseif a:mode ==# "c"  | hi User2 guifg=#d33682 guibg=#cb4b16  ctermfg=166 ctermfg=125
+    else                   | hi User2 guifg=#d33682 guibg=#cb4b16  ctermfg=166 ctermfg=125
     endif
 endfunc
 
@@ -74,7 +74,7 @@ function! Modified()
     if modified == 0
         return ''
     else
-        return '⚡'
+        return '✘'
 endfunc
 
 
@@ -116,35 +116,33 @@ if has('statusline')
     function! SetStatusLineStyle()
         " Basic color presets
         hi User1 guifg=#002b36  guibg=#859900   ctermfg=234  ctermbg=64    
-        hi User2 guifg=#859900  guibg=#eee8d5 ctermfg=64    
-        hi User3 guifg=#cb4b16  guibg=#eee8d5 ctermfg=254 ctermbg=166
-        hi User4 guifg=#eee8d5  guibg=#dc322f   ctermfg=254 ctermbg=160 
-        hi User5 guifg=#eee8d5  guibg=#cb4b16  ctermfg=254 ctermbg=166
-        hi User6 guifg=#eee8d5  guibg=#cb4b16  ctermfg=254 ctermbg=166
-        hi User7 guibg=#eee8d5  guifg=#073642   ctermfg=207 ctermbg=234
-        hi User8 guifg=#268bd2  guibg=#eee8d5 ctermfg=234 ctermbg=230
+        hi User2 guifg=#859900  guibg=#cb4b16   ctermfg=64  ctermbg=166   
+        hi User3 guifg=#cb4b16  guibg=#002b36   ctermfg=166 ctermbg=254
+        hi User4 guifg=#eee8d5  guibg=#002b36   ctermfg=234 ctermbg=254
+        hi User5 guibg=#eee8d5  guifg=#002b36   ctermbg=234 ctermfg=254
+        hi User6 guifg=#eee8d5  guibg=#cb4b16   ctermfg=254 ctermbg=166
+        hi User7 guibg=#eee8d5  guifg=#073642   ctermfg=234 ctermbg=254
+        hi User8 guibg=#dc322f  guifg=#eee8d5   ctermbg=160 ctermfg=254
 
         let &stl=""
         " mode (changes color)
         let &stl.="%1*\ %{Mode()} %0*" 
         let &stl.="%2*⮀%0*" 
-        " file path
-        let &stl.="%7* %{getcwd()} %0*"
-        let &stl.="%5*⮀%0*" 
         " file name
         let &stl.="%6* %<%t %0*"
         let &stl.="%3*⮀%0*%7*" 
+        " file path
+        let &stl.="%4* %{getcwd()} %0*"
+        let &stl.="%5*⮀" 
 
         " right-aligh everything past this point
         let &stl.="%= "
 
 
-        " readonly flag
-        let &stl.="%(%{(&ro!=0?'(readonly)':'')} | %)"
 
-        let &stl.="%8*%{fugitive#statusline()} %0*" 
+        let &stl.="%{fugitive#statusline()} " 
         " file type (eg. python, ruby, etc..)
-        let &stl.="%2*%( %{&filetype} %) | "
+        let &stl.="%( %{&filetype} %) | "
         " file format (eg. unix, dos, etc..)
         let &stl.="%{&fileformat} | "
         " file encoding (eg. utf8, latin1, etc..)
@@ -152,11 +150,13 @@ if has('statusline')
         " buffer number
         let &stl.="BUF #%n " 
         "line number (pink) / total lines
-        let &stl.="%2* LN %l/%L\  "
+        let &stl.=" LN %l/%L\  "
         " percentage done
         let &stl.="(%p%%)  "
         " modified / unmodified (purple)
-        let &stl.="%(%4* %{Modified()} %)%0*"
+        let &stl.="%(%8* %{Modified()} %)%0*"
+        " readonly flag
+        let &stl.="%6*%(%{(&ro!=0?' ⚡ ':'')}%)%0*"
     endfunc
 
     au InsertEnter * call ModeChanged(v:insertmode)
