@@ -32,7 +32,6 @@ let g:last_mode=""
 " pretty mode display - converts the one letter status notifiers to words
 function! Mode()
     let l:mode = mode()
-
     if     mode ==# "n"  | return "NORMAL "
     elseif mode ==# "i"  | return "INSERT "
     elseif mode ==# "R"  | return "REPLACE"
@@ -40,7 +39,7 @@ function! Mode()
     elseif mode ==# "V"  | return "V-LINE "
     elseif mode ==# "^V" | return "V-BLOCK"
     elseif mode ==# "c"  | return "SEARCH "
-    else                 | return l:mode
+    else                 | return "V-BLOCK"
     endif
 endfunc    
 
