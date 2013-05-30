@@ -159,11 +159,25 @@ if has('statusline')
         let &stl.="%6*%(%{(&ro!=0?' ⚡ ':'')}%)%0*"
     endfunc
 
+    function! HideStl()
+        let &stl=""
+        " file name
+        let &stl.="%6* %<%t %0*"
+        let &stl.="%3*⮀%0*%7*" 
+        " file path
+        let &stl.="%4* %{getcwd()} %0*"
+        let &stl.="%5*⮀"
+    endfunc
+
     au InsertEnter * call ModeChanged(v:insertmode)
     au InsertChange * call ModeChanged(v:insertmode)
     au InsertLeave * call ModeChanged(mode())
 
+    au FocusGained * call SetStatusLineStyle()
+    au FocusLost * call HideStl()
+
     " Switch between the normal and vim-debug modes in the status line
     nmap _ds :call SetStatusLineStyle()<CR>
+    nmap _dh :call HideStl()<CR>
     call SetStatusLineStyle()
 endif
