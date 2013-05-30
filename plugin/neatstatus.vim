@@ -140,17 +140,13 @@ if has('statusline')
 
 
 
-        let &stl.="%{fugitive#statusline()} " 
-        " file type (eg. python, ruby, etc..)
-        let &stl.="%( %{&filetype} %) | "
-        " file format (eg. unix, dos, etc..)
-        let &stl.="%{&fileformat} | "
-        " file encoding (eg. utf8, latin1, etc..)
-        let &stl.="%(%{(&fenc!=''?&fenc:&enc)}  %)"
+        " let &stl.="%{fugitive#statusline()} " 
+        " " file type (eg. python, ruby, etc..)
+        " let &stl.="%( %{&filetype} %) | "
+        " " file encoding (eg. utf8, latin1, etc..)
+        " let &stl.="%(%{(&fenc!=''?&fenc:&enc)}  %)"
         " buffer number
-        let &stl.="BUF #%n " 
-        "line number (pink) / total lines
-        let &stl.=" LN %l/%L\  "
+        let &stl.="#%n " 
         " percentage done
         let &stl.="(%p%%)  "
         " modified / unmodified (purple)
