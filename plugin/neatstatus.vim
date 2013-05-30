@@ -175,6 +175,7 @@ if has('statusline')
 
     au FocusGained * call SetStatusLineStyle()
     au FocusLost * call HideStl()
+    au ColorScheme * call SetStatusLineStyle()
 
     " Switch between the normal and vim-debug modes in the status line
     nmap _ds :call SetStatusLineStyle()<CR>
